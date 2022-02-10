@@ -37,38 +37,45 @@ class TicTacToe:
         self.place_player(player, row, col)
         self.print_board()
 
+    def take_random_turn(self, player):
+        row = random.randint(0, 2)
+        col = random.randint(0, 2)
+        while not self.is_valid_move(row, col):
+            row = random.randint(0, 2)
+            col = random.randint(0, 2)
+        self.place_player(player, row, col)
+        self.print_board()
+
     def take_turn(self, player):
         print(player + "'s Turn")
-        self.take_manual_turn(player)
+        if player == 'X':
+            self.take_manual_turn(player)
+        elif player == 'O':
+            self.take_random_turn(player)
 
     def check_col_win(self, player):
-        # TODO: Check col win
         for col in range(3):
             if (self.board[0][col] == player) and (self.board[1][col] == player) and (self.board[2][col] == player):
                 return True
         return False
 
     def check_row_win(self, player):
-        # TODO: Check row win
         for row in self.board:
             if (row[0] == player) and (row[1] == player) and (row[2] == player):
                 return True
         return False
 
     def check_diag_win(self, player):
-        # TODO: Check diagonal win
         if (self.board[0][0] == player) and (self.board[1][1] == player) and (self.board[2][2] == player) or (self.board[2][0] == player) and (self.board[1][1] == player) and (self.board[0][2] == player):
             return True
         return False
 
     def check_win(self, player):
-        # TODO: Check win
         if self.check_col_win(player) or self.check_row_win(player) or self.check_diag_win(player):
             return True
         return False
 
     def check_tie(self):
-        # TODO: Check tie
         for row in self.board:
             for col in row:
                 if col == '-':
@@ -76,7 +83,6 @@ class TicTacToe:
         return True
 
     def play_game(self):
-        # TODO: Play game
         game_over = False
         self.print_instructions()
         self.print_board()
