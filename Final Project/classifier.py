@@ -31,7 +31,10 @@ print('Accuracy:', acc)
 model.show_most_informative_features()
 
 # use model to predict review sentiment
-while True:
+def classifyReview():
     test = input('Review: ')
     t_features = {word: (word in word_tokenize(test.lower())) for word in tokens}
     print(test," : ", model.classify(t_features))
+
+while True:
+    classifyReview()
