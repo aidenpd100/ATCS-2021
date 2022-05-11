@@ -38,3 +38,4 @@ def classifyReview():
 
 while True:
     classifyReview()
+
